@@ -9,7 +9,7 @@ import countryTelephoneCode from 'country-telephone-code'
 
 // ARRAY REDUCER FOR { alpha3: '' } to [name]
 const arrayReducerCountry = (accumulator, currentValue) => [...accumulator, currentValue.alpha3]
-export const arrayReducer = array => array.reduce(arrayReducerCountry, [])
+const arrayReducer = array => array.reduce(arrayReducerCountry, [])
 
 // CREATE COUNTRY CODE ARRAY
 const telephoneCode = () => codes.map((code) => {
