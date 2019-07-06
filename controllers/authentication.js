@@ -38,7 +38,6 @@ export const loginEmail = async (req, res) => {
     console.log(req.url)
     const { email, password } = req.params
     const userObj = await UserProfiles.findOne({ email });
-    console.log(userObj)
     const user = await checkPassword(userObj.id, password)
     res.status(200).end(JSON.stringify(user))
   } catch (err) {
