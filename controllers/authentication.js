@@ -24,8 +24,22 @@ export const checkPassword = (id, password) => new Promise(async(resolve, reject
 // =====================================
 export const login = async (req, res) => {
   try {
+    console.log(req.url)
     const { id, password } = req.params
     const user = await checkPassword(id, password)
+    res.status(200).end(JSON.stringify(user))
+  } catch (err) {
+    ErrorHandler(err, res)
+  }
+}
+
+export const loginEmail = async (req, res) => {
+  try {
+    console.log(req.url)
+    const { email, password } = req.params
+    const userObj = await UserProfiles.findOne({ email });
+    console.log(userObj)
+    const user = await checkPassword(userObj.id, password)
     res.status(200).end(JSON.stringify(user))
   } catch (err) {
     ErrorHandler(err, res)
@@ -37,6 +51,7 @@ export const login = async (req, res) => {
 
 export const createNewUser = async (req, res) => {
   try {
+    console.log(req.url)
     const userObject = {
       ...req.body,
       password: HashedPassword(req.body.password),

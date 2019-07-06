@@ -6,6 +6,7 @@ import { ErrorHandler } from '../common/helpers/error-handling'
 // =====================================
 export const getListingsByType = async (req, res) => {
   try {
+    console.log(req.url)
     const { id, password, type } = req.params
     await checkPassword(id, password)
     if (!productTypeArray.includes(type)) throw { err: 'Invalid Product Type' }
@@ -20,6 +21,7 @@ export const getListingsByType = async (req, res) => {
 // =====================================
 export const createNewListing = async (req, res) => {
   try {
+    console.log(req.url)
     const user = await checkPassword(req.params.id, req.params.password)
     if (user.userType !== 'artist') throw { err: 'Invalid User Type' }
     const listingObject = {
